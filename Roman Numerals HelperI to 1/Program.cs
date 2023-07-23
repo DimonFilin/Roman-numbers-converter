@@ -10,7 +10,15 @@ namespace Roman_Numerals_HelperI_to_1
     {
         static void Main(string[] args)
         {
-            string romanNumeral = "DM";
+            //Start
+             bool work = true;
+            Console.WriteLine("Hi");
+            while (work)
+            {
+                Console.WriteLine("Enter a string");
+               
+                //Main code
+             string romanNumeral = Console.ReadLine();
             int n = 0;
             int[] roman = { 1000, 500, 100, 50, 10, 5, 1 };
             char[] arab = { 'M', 'D', 'C', 'L', 'X', 'V', 'I'};
@@ -18,14 +26,13 @@ namespace Roman_Numerals_HelperI_to_1
             for (int i = 0; i < romanNumeral.Length - 1; i++)
             {
                 //MDCLXVI
-                if (romanNumeral[i] == arab[0]) n += roman[0];
-                if (romanNumeral[i] == arab[1])
+                if (romanNumeral[i] == arab[0]) n += roman[0];   //M?
+                if (romanNumeral[i] == arab[1])                  //D?
                 {
-                    if (romanNumeral[i + 1] == arab[0]) n -= roman[1]; 
-                    else n += roman[1];
+                    if (romanNumeral[i + 1] == arab[0]) n -= roman[1];   else n += roman[1];
                 } 
 
-                for (int j = 2; j < roman.Length; j++)
+                for (int j = 2; j < roman.Length; j++)            //C, L, X, V, I ?
                 {
                     if (romanNumeral[i] == arab[j]) { 
                         if (romanNumeral[i + 1] == arab[j - 1] | romanNumeral[i + 1] == arab[j - 2])      n -= roman[j]; 
@@ -34,12 +41,14 @@ namespace Roman_Numerals_HelperI_to_1
                 }
                 
 
-            }
-            for (int j = 0; j < roman.Length; j++)
+            
+            for (int j = 0; j < roman.Length; j++)      // Last mark in input string
             {
                 if (romanNumeral[romanNumeral.Length - 1] == arab[j]) n += roman[j];
             }
-            
+              
+            /*Easier to read code
+              It's doing the same thing as code higher, but without arrays.*/
             /*for (int i = 0; i < romanNumeral.Length - 1; i++)
             {
                 //MDCLXVI
@@ -67,7 +76,23 @@ namespace Roman_Numerals_HelperI_to_1
             if (romanNumeral[j] == 'M') n += 1000;
 */
             Console.WriteLine(n);
-            Console.ReadLine();
+                
+                //Try do it one more time
+                AnotherTry:
+                Console.WriteLine("Let's repeat ? \n Write Yes/No ");
+                string Repeat = Console.ReadLine();
+                switch (Repeat)
+                {
+                    case "No": work = false; break;
+                    case "Yes": work = true;  break;
+                    default:
+                        Console.WriteLine("Please, write the right word");
+                        goto AnotherTry;
+                        break;
+                }
+                Console.Clear();
+            }
+            }
         }
     }
 }
